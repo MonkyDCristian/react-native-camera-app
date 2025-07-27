@@ -1,4 +1,20 @@
 {
+  "expo": {
+    "name": "Camera App",
+    "slug": "react-native-camera-app", 
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "platforms": ["ios", "android"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cameraappnew.app"
+    },
+    "android": {
+      "package": "com.cameraappnew"
+    },
+    "scheme": "cameraapp"
+  },
   "name": "CameraAppNew",
-  "displayName": "CameraAppNew"
+  "displayName": "Camera App"
 }

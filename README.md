@@ -1,97 +1,243 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📱 Camera App - React Native 0.79.1
 
-# Getting Started
+Una aplicación de cámara desarrollada con React Native que funciona tanto en iOS como Android.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🚀 Configuración del Entorno de Desarrollo ✅ COMPLETA
 
-## Step 1: Start Metro
+Este proyecto está **completamente configurado** y funcionando para desarrollar tanto para iOS como para Android.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+### Dependencias Instaladas ✅
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- **Node.js** v24.4.1
+- **npm** v11.4.2 
+- **React Native** 0.79.1 (compatible con Node.js 24+)
+- **Expo SDK** 53.0.0 ✅
+- **Expo CLI** ✅
+- **Java JDK** 17.0.16 (Azul Zulu)
+- **Watchman** - Para monitorear cambios en archivos
+- **React Native CLI** - Para comandos de React Native
+- **Android Studio** con SDK configurado
+- **Xcode** - Para desarrollo iOS
+- **Ruby 3.4.5** y **CocoaPods**
 
-```sh
-# Using npm
+### Variables de Entorno Configuradas ✅
+
+```bash
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/bin:$PATH"
+```
+
+## ✅ Estado del Proyecto - TODO FUNCIONANDO
+
+### **iOS ✅ FUNCIONANDO**
+```bash
+npx react-native run-ios
+# ✅ Compila y ejecuta en iPhone 16 Pro
+# ✅ Metro server en puerto 8081
+# ✅ Hot reload activo
+```
+
+### **Android ✅ FUNCIONANDO**
+```bash
+npx react-native run-android
+# ✅ Compila y ejecuta en emulador Medium_Phone
+# ✅ Metro server en puerto 8081
+# ✅ Hot reload activo
+```
+
+### **Expo Go ✅ FUNCIONANDO**
+```bash
+npx expo start
+# ✅ Servidor Expo en puerto 8081
+# ✅ Código QR para dispositivos móviles
+# ✅ Hot reload en tiempo real
+```
+
+## 📱 Desarrollo con Expo Go
+
+### **Configuración Inicial de Expo Go**
+
+1. **Instalar Expo Go en tu dispositivo móvil:**
+   - **iOS**: Descarga "Expo Go" del [App Store](https://apps.apple.com/app/expo-go/id982107779)
+   - **Android**: Descarga "Expo Go" de [Google Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
+
+2. **Conectar tu dispositivo al proyecto:**
+   ```bash
+   # Iniciar servidor Expo
+   npx expo start
+   
+   # Se abrirá un código QR en la terminal
+   ```
+
+3. **Escanear código QR:**
+   - **iOS**: Abre la app **Cámara** nativa y escanea el código QR
+   - **Android**: Abre **Expo Go** y toca "Scan QR Code"
+
+### **Comandos de Expo para Desarrollo**
+
+```bash
+# Iniciar servidor Expo (recomendado para desarrollo)
+npx expo start
+
+# Iniciar con caché limpio
+npx expo start --clear
+
+# Abrir automáticamente en simulador iOS
+npx expo start --ios
+
+# Abrir automáticamente en emulador Android
+npx expo start --android
+
+# Abrir en el navegador web
+npx expo start --web
+
+# Ver todas las opciones
+npx expo start --help
+```
+
+### **Durante el desarrollo con Expo:**
+
+Cuando tengas Expo ejecutándose, puedes usar estos atajos en la terminal:
+
+- **`r`** - Recargar la aplicación
+- **`m`** - Abrir/cerrar menú de desarrollo
+- **`j`** - Abrir debugger de Chrome
+- **`i`** - Abrir en simulador iOS
+- **`a`** - Abrir en emulador Android
+- **`w`** - Abrir en navegador web
+- **`?`** - Mostrar todos los comandos
+
+### **Beneficios de Expo Go:**
+
+✅ **Desarrollo más rápido** - Ver cambios instantáneamente  
+✅ **Testing en dispositivo real** - Usar tu teléfono personal  
+✅ **Sin cables** - Conexión inalámbrica via WiFi  
+✅ **Hot reload automático** - Cambios sin recompilar  
+✅ **Debugging remoto** - Debug desde Chrome DevTools  
+✅ **Acceso a APIs nativas** - Cámara, GPS, sensores, etc.  
+
+## 📋 Comandos Principales
+
+### Desarrollo Diario
+```bash
+# OPCIÓN 1: Desarrollo con Expo Go (Recomendado para desarrollo rápido)
+npx expo start
+
+# OPCIÓN 2: Desarrollo tradicional React Native
+# Terminal 1: Metro bundler
 npm start
 
-# OR using Yarn
-yarn start
+# Terminal 2: iOS
+npx react-native run-ios
+
+# Terminal 3: Android  
+npx react-native run-android
+
+# Ejecutar tests
+npm test
+
+# Verificar código
+npm run lint
 ```
 
-## Step 2: Build and run your app
+### Solución de Problemas
+```bash
+# Limpiar caché si hay problemas
+npx react-native clean
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+# Reiniciar Metro con caché limpia
+npm start -- --reset-cache
 
-### Android
+# Reiniciar Expo con caché limpia
+npx expo start --clear
 
-```sh
-# Using npm
-npm run android
+# Reiniciar ADB (Android)
+adb kill-server && adb start-server
 
-# OR using Yarn
-yarn android
+# Cerrar proceso en puerto 8081
+lsof -ti:8081 | xargs kill
+
+# Reinstalar dependencias (casos extremos)
+rm -rf node_modules package-lock.json
+npm install
 ```
 
-### iOS
+## 🛠️ Tecnologías Configuradas
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+- **React Native** 0.79.1
+- **Expo SDK** 53.0.0 ✅
+- **TypeScript** ✅
+- **ESLint** ✅  
+- **Prettier** ✅
+- **Jest** para testing ✅
+- **Metro** bundler ✅
+- **Hermes** JavaScript engine ✅
+- **Flipper** debugging ✅
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+## 🎯 Próximos Pasos para Funcionalidad de Cámara
 
-```sh
-bundle install
-```
+1. **Instalar librería de cámara:**
+   ```bash
+   npx expo install expo-camera
+   # o para React Native puro:
+   npm install react-native-vision-camera
+   ```
 
-Then, and every time you update your native dependencies, run:
+2. **Configurar permisos:**
+   - iOS: `Info.plist`
+   - Android: `AndroidManifest.xml`
 
-```sh
-bundle exec pod install
-```
+3. **Implementar componentes:**
+   - Captura de fotos
+   - Grabación de videos
+   - Galería de medios
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## 📱 Dispositivos de Prueba
 
-```sh
-# Using npm
-npm run ios
+### iOS Simuladores Disponibles:
+- iPhone 16 Pro ✅ (principal)
+- iPhone 16, iPhone 16 Plus, iPhone 16 Pro Max
+- iPad Air, iPad Pro, iPad mini
 
-# OR using Yarn
-yarn ios
-```
+### Android Emuladores:
+- Medium_Phone(AVD) - API 15 ✅ (principal)
+- Configuración: VanillaIceCream API Level 35
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+### Dispositivos Físicos con Expo Go:
+- **iOS**: iPhone/iPad con Expo Go instalado ✅
+- **Android**: Cualquier dispositivo Android con Expo Go ✅
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## 🔧 Notas Técnicas
 
-## Step 3: Modify your app
+### **Problema Resuelto: Metro Server**
+- **Problema inicial**: Error "Cannot read properties of undefined (reading 'handle')" con Node.js v24.4.1
+- **Solución**: Actualización a React Native 0.79.1
+- **Estado**: ✅ Completamente resuelto
 
-Now that you have successfully run the app, let's make changes!
+### **Expo Integration**
+- **Configuración**: Expo modules instalados en proyecto React Native existente
+- **Compatibilidad**: Funciona tanto con Expo Go como compilación nativa
+- **Puerto**: 8081 (predeterminado)
+- **Estado**: ✅ Completamente funcional
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+### **Compatibilidad**
+- React Native 0.79.1 es **completamente compatible** con Node.js v24.4.1
+- Expo SDK 53.0.0 es **completamente compatible** con React Native 0.79.1
+- No se requiere downgrade de Node.js
+- Todas las dependencias actualizadas y funcionando
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+---
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+## 🎉 ¡Entorno 100% Funcional!
 
-## Congratulations! :tada:
+Tu setup de React Native + Expo está **completamente listo** para desarrollar aplicaciones de cámara tanto en iOS como Android. Todas las herramientas están configuradas y probadas.
 
-You've successfully run and modified your React Native App. :partying_face:
+**¡Tiempo de programar! 🚀📸🎥**
 
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+### **Recomendación para desarrollo:**
+1. **Usa Expo Go** para desarrollo y testing rápido
+2. **Usa compilación nativa** (`npx react-native run-ios/android`) para testing final y funcionalidades que requieren módulos nativos específicos
