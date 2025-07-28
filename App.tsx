@@ -5,9 +5,10 @@
  * @format
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import type {PropsWithChildren} from 'react';
 import {
+  SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -23,6 +24,14 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+// Imports para la plataforma de cámara
+import { ModeSelector } from './src/components/ModeSelector';
+import { ImageCaptureMode } from './src/components/ImageCaptureMode';
+import { ImageTransmissionMode } from './src/components/ImageTransmissionMode';
+import { ImageScannerMode } from './src/components/ImageScannerMode';
+import { ImageCorrectionMode } from './src/components/ImageCorrectionMode';
+import { CameraMode } from './src/types/CameraTypes';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -56,43 +65,76 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+  const [currentMode, setCurrentMode] = useState<CameraMode>('capture');
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  /*
-   * To keep the template simple and small we're adding padding to prevent view
-   * from rendering under the System UI.
-   * For bigger apps the recommendation is to use `react-native-safe-area-context`:
-   * https://github.com/AppAndFlow/react-native-safe-area-context
-   *
-   * You can read more about it here:
-   * https://github.com/react-native-community/discussions-and-proposals/discussions/827
-   */
-  const safePadding = '5%';
+  // Función para renderizar el componente actual según el modo
+  const renderCurrentMode = () => {
+    switch (currentMode) {
+      case 'capture':
+        return <ImageCaptureMode />;
+      case 'transmission':
+        return <ImageTransmissionMode />;
+      case 'scanner':
+        return <ImageScannerMode />;
+      case 'correction':
+        return <ImageCorrectionMode />;
+      default:
+        return <ImageCaptureMode />;
+    }
+  };
+
+  // Si hay un modo seleccionado que no sea 'capture', mostrar solo ese componente
+  if (currentMode !== 'capture') {
+    return (
+      <SafeAreaView style={[backgroundStyle, { flex: 1 }]}>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={backgroundStyle.backgroundColor}
+        />
+        <View style={{ flex: 1 }}>
+          <ModeSelector
+            currentMode={currentMode}
+            onModeChange={setCurrentMode}
+          />
+          {renderCurrentMode()}
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  // Para el modo 'capture', mostrar la interfaz tradicional con el selector de modos
+  const safePadding = isDarkMode ? 0 : 24;
 
   return (
-    <View style={backgroundStyle}>
+    <SafeAreaView style={backgroundStyle}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <View style={{paddingRight: safePadding}}>
-          <Header/>
-        </View>
+        <Header />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
             paddingHorizontal: safePadding,
             paddingBottom: safePadding,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
+          
+          {/* Selector de modos de cámara */}
+          <ModeSelector
+            currentMode={currentMode}
+            onModeChange={setCurrentMode}
+          />
+          
+          {/* Renderizar el componente del modo actual */}
+          {renderCurrentMode()}
+          
           <Section title="See Your Changes">
             <ReloadInstructions />
           </Section>
@@ -105,7 +147,7 @@ function App(): React.JSX.Element {
           <LearnMoreLinks />
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 

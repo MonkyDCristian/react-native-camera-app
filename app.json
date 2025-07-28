@@ -1,19 +1,36 @@
 {
   "expo": {
     "name": "Camera App",
-    "slug": "react-native-camera-app", 
+    "slug": "react-native-camera-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.cameraappnew.app"
+      "bundleIdentifier": "com.cameraappnew.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access your camera"
+      }
     },
     "android": {
-      "package": "com.cameraappnew"
+      "package": "com.cameraappnew",
+      "permissions": [
+        "android.permission.CAMERA"
+      ]
     },
-    "scheme": "cameraapp"
+    "scheme": "cameraapp",
+    "plugins": [
+      "react-native-vision-camera"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "363a5a0f-c31c-4d82-9919-f44341044af1"
+      }
+    }
   },
   "name": "CameraAppNew",
   "displayName": "Camera App"
